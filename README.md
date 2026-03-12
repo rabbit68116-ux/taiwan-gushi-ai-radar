@@ -86,11 +86,11 @@ streamlit run app/streamlit_app.py
 
 ### 網站內容
 
-網站前台現在改成直接聚焦在「台股 skill」本身，主位址先統一對齊到：
+官方網站：
 
 - [https://rabbit68116-ux.github.io/taiwan-stock-radar/](https://rabbit68116-ux.github.io/taiwan-stock-radar/)
 
-對外網站會直接說明這個 skill 的主要功用：
+網站聚焦在 `taiwan-stock-radar` 作為台股分析 skill 的核心能力：
 
 - 掃描約 1800 檔台股
 - 排出 Top 20 候選股
@@ -98,17 +98,17 @@ streamlit run app/streamlit_app.py
 - 定義買入區、停損區、停利區
 - 針對指定股票做更深度的研判
 
-`docs/` 內目前放的是對外網站內容：
+網站內容位於 `docs/`：
 
 | 路徑 | 作用 |
 |---|---|
-| [`docs/index.html`](./docs/index.html) | 首頁，直接說明這是一個教 AI agent 分析台股的 skill |
+| [`docs/index.html`](./docs/index.html) | 首頁，介紹 skill 的定位、輸出與使用價值 |
 | [`docs/faq.html`](./docs/faq.html) | FAQ 頁，附 FAQ schema |
 | [`docs/methodology.html`](./docs/methodology.html) | 方法論頁，說明 1800 檔掃描、Top 20、單股 deep-dive 的流程 |
 | [`docs/use-cases.html`](./docs/use-cases.html) | 使用情境頁，說明 agent 與研究者如何使用這個 skill |
 | [`docs/docs.html`](./docs/docs.html) | skill 文件入口頁，連回 repo 內的重要規格與設定 |
 
-如果要正式開站，只要在 GitHub repo 開啟 Pages，來源選 `main` branch 的 `/docs` 即可。
+若要更新公開網站內容，直接調整 `docs/` 下的頁面即可。
 
 ### 專案亮點
 
