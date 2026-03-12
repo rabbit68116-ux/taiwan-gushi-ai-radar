@@ -308,6 +308,121 @@ pre {
   box-shadow: var(--shadow);
 }
 
+.stock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.stock-card {
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 249, 244, 0.88)),
+    rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow);
+}
+
+.stock-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stock-name {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.stock-code {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.signal-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(31, 111, 95, 0.1);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.signal-pill.secondary {
+  background: rgba(216, 132, 51, 0.14);
+  color: #8a4c10;
+}
+
+.stock-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.stock-metric {
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.stock-metric span {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stock-metric strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1rem;
+}
+
+.stock-note {
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+.split-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.analysis-card {
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow);
+}
+
+.analysis-card h3 {
+  margin-bottom: 12px;
+}
+
+.analysis-card ul {
+  margin-top: 10px;
+}
+
+.analysis-card li + li {
+  margin-top: 8px;
+}
+
+.compare-table td strong {
+  display: block;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -362,6 +477,10 @@ code {
   }
 
   .meta-list {
+    grid-template-columns: 1fr;
+  }
+
+  .split-grid {
     grid-template-columns: 1fr;
   }
 }

@@ -102,7 +102,7 @@ streamlit run app/streamlit_app.py
 
 | 路徑 | 作用 |
 |---|---|
-| [`docs/index.html`](./docs/index.html) | 首頁，介紹 skill 的定位、輸出、使用價值與範例結構 |
+| [`docs/index.html`](./docs/index.html) | 首頁，介紹 skill 的定位、輸出、使用價值、Top 20 示意與單股 deep-dive 範例 |
 | [`docs/faq.html`](./docs/faq.html) | FAQ 頁，附 FAQ schema |
 | [`docs/methodology.html`](./docs/methodology.html) | 方法論頁，說明 1800 檔掃描、Top 20、單股 deep-dive 的流程 |
 | [`docs/use-cases.html`](./docs/use-cases.html) | 使用情境頁，說明 agent 與研究者如何使用這個 skill |
