@@ -6,9 +6,9 @@
 ![Market](https://img.shields.io/badge/market-Taiwan%20Stocks-red)
 ![Scope](https://img.shields.io/badge/scope-research%20%7C%20signals%20%7C%20backtest-green)
 
-Open-source Taiwan stock market research, scoring, signal, and backtesting framework.
+Open-source Taiwan stock analysis skill and research framework for AI agents, analysts, and developers.
 
-> A public build log for an AI-native Taiwan stock research stack: from data pipeline to radar scoring, from signal generation to backtest and dashboard.
+> A structured Taiwan stock skill that combines market scan, Top 20 ranking, single-stock deep dives, and risk-aware action planning.
 
 [繁體中文](#繁體中文) | [English](#english)
 
@@ -90,23 +90,23 @@ streamlit run app/streamlit_app.py
 
 - [https://rabbit68116-ux.github.io/taiwan-stock-radar/](https://rabbit68116-ux.github.io/taiwan-stock-radar/)
 
-網站聚焦在 `taiwan-stock-radar` 作為台股分析 skill 的核心能力：
+`taiwan-stock-radar` 的公開網站聚焦在這個台股分析 skill 的核心價值：
 
 - 掃描約 1800 檔台股
 - 排出 Top 20 候選股
 - 給出方向判斷與觀察優先順序
-- 定義買入區、停損區、停利區
-- 針對指定股票做更深度的研判
+- 定義買入區、停損區、停利區與風險框架
+- 針對指定股票做更深度的單股研判
 
-網站內容位於 `docs/`：
+網站內容位於 `docs/`，目前主要頁面如下：
 
 | 路徑 | 作用 |
 |---|---|
-| [`docs/index.html`](./docs/index.html) | 首頁，介紹 skill 的定位、輸出與使用價值 |
+| [`docs/index.html`](./docs/index.html) | 首頁，介紹 skill 的定位、輸出、使用價值與範例結構 |
 | [`docs/faq.html`](./docs/faq.html) | FAQ 頁，附 FAQ schema |
 | [`docs/methodology.html`](./docs/methodology.html) | 方法論頁，說明 1800 檔掃描、Top 20、單股 deep-dive 的流程 |
 | [`docs/use-cases.html`](./docs/use-cases.html) | 使用情境頁，說明 agent 與研究者如何使用這個 skill |
-| [`docs/docs.html`](./docs/docs.html) | skill 文件入口頁，連回 repo 內的重要規格與設定 |
+| [`docs/docs.html`](./docs/docs.html) | 知識庫入口頁，連回 repo 內的重要規格、設定與腳本 |
 
 若要更新公開網站內容，直接調整 `docs/` 下的頁面即可。
 

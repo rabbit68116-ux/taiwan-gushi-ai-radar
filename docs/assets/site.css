@@ -260,6 +260,54 @@ ol {
   font-size: 1.04rem;
 }
 
+.section-intro {
+  margin: 0 0 18px;
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.card ul {
+  margin-top: 12px;
+}
+
+.card li + li {
+  margin-top: 8px;
+}
+
+.card strong {
+  color: var(--text);
+}
+
+pre {
+  margin: 0;
+  padding: 20px;
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: #fcfcfa;
+  box-shadow: var(--shadow);
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
