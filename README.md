@@ -119,10 +119,12 @@ Action Plan
 這個頁面會展示：
 
 - 個案背景與研究問題
+- committee scorecard 與權重化傾向
 - specialist agent 個別觀點
 - 共識與分歧整理
 - base / bull / bear 三情境框架
-- 買入區、停損區、停利區、失效條件
+- entry / exit ladder 視覺化
+- dissent memo、買入區、停損區、停利區、失效條件
 - 為什麼這樣的輸出更像真正的研究會議結果
 
 ### 為什麼值得追蹤
