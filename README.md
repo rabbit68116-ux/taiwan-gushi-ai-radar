@@ -1,4 +1,4 @@
-# taiwan-stock-radar
+# Taiwan Stock Radar
 
 [![GitHub repo](https://img.shields.io/badge/GitHub-rabbit68116--ux%2Ftaiwan--stock--radar-181717?logo=github)](https://github.com/rabbit68116-ux/taiwan-stock-radar)
 ![Status](https://img.shields.io/badge/status-architecture%20v1.0-blue)
@@ -16,53 +16,68 @@ Open-source Taiwan equity analysis skill and research framework for AI agents, a
 
 ## 繁體中文
 
-### 專案介紹
+### 展品定位
 
-**taiwan-stock-radar** 是一個以台灣股票市場為核心的開源分析 skill 與研究框架。  
-它的目標不是製造不可解釋的投資結論，而是展示一套可研究、可驗證、可擴充、可持續演進的台股分析方法。
+**Taiwan Stock Radar** 是一個以台灣股票市場為核心的專業分析 skill。  
+它展示的不是單一選股結果，而是一套完整的方法論：如何讓 AI agent 先理解全市場，再形成研究優先順序，最後對指定股票提出更有結構的分析判斷。
 
-這個專案把量化研究常見卻分散的流程，整合成一條完整資料鏈：
+這個專案的展示重點在於：
 
-- 從市場資料載入開始
-- 經過資料清理與統一 schema
-- 計算技術面、量價、籌碼、基本面與市場特徵
-- 產生雷達評分與觀測排序
-- 輸出買入、賣出、觀察與風險警示訊號
-- 用回測檢驗規則有效性
-- 最後以 dashboard 與 heatmap 視覺化展示
+- 從約 1800 檔台股建立市場級掃描能力
+- 用可解釋的排序邏輯整理 Top 20 研究候選股
+- 將單股判斷擴充為 thesis、action zones、risk framing 的深度輸出
+- 讓分析結果能被檢驗、討論、優化，而不是停留在模糊結論
 
-對想做台股 AI、量化選股、回測驗證與研究工具開發的人來說，這不是零散筆記，而是一個具展示價值與工程延展性的專業骨架。
+對想做台股 AI、量化研究、回測驗證與研究工具開發的人來說，這是一個同時具備展示價值與工程延展性的專業骨架。
 
-### 這個 repo 現在包含什麼
+### 專案價值
 
-除了架構文件，repo 現在已經開始整理成一個可直接給 AI agent 使用的台股 skill：
+Taiwan Stock Radar 的核心不是「預測市場一定會怎麼走」，而是展示一種更專業的分析方式：
+
+- 先建立市場上下文，再談單一股票
+- 先做研究排序，再做深度判斷
+- 先定義風險，再定義機會
+- 先給可執行區間，再給方向觀點
+
+這讓它不只是選股工具，而更像一位能先觀察全市場、再對關鍵標的提出研究備忘錄的分析師。
+
+### 核心能力
+
+| 能力 | 說明 |
+|---|---|
+| Full-market scan | 掃描約 1800 檔台股，建立市場觀察起點 |
+| Top 20 shortlist | 用排序邏輯整理最值得研究的候選標的 |
+| Single-stock deep dive | 對指定股票輸出 thesis、context、action zones、risk framing |
+| Explainable scoring | 以可拆解的因子與風險邏輯支撐排序結果 |
+| Action planning | 以買入區、停損區、停利區與 invalidation structure 呈現分析 |
+
+### GitHub 與網站
+
+- GitHub Repo: [https://github.com/rabbit68116-ux/taiwan-stock-radar](https://github.com/rabbit68116-ux/taiwan-stock-radar)
+- Public Website: [https://rabbit68116-ux.github.io/taiwan-stock-radar/](https://rabbit68116-ux.github.io/taiwan-stock-radar/)
+
+公開網站以專業展品介紹方式呈現這個 skill，重點展示：
+
+- 市場級掃描能力
+- Top 20 候選股示意
+- 單股 deep-dive 範例
+- 方法論與知識庫入口
+
+### Repo 內容
+
+這個 repo 目前已經整理成一套可供 AI agent 直接使用與延伸的台股分析 skill：
 
 | 路徑 | 作用 |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | agent 的核心工作流與判斷規則 |
-| [`references/taiwan-market-playbook.md`](./references/taiwan-market-playbook.md) | 台股市場判斷、因子與風險規則 |
+| [`SKILL.md`](./SKILL.md) | skill 的核心工作流與判斷規則 |
+| [`references/taiwan-market-playbook.md`](./references/taiwan-market-playbook.md) | 台股市場特性、因子與風險規則 |
 | [`references/prediction-framework.md`](./references/prediction-framework.md) | 預測輸出格式、情境推演與信心框架 |
-| [`references/agent-analyst-blueprint.md`](./references/agent-analyst-blueprint.md) | v1.1 資深分析師模式，包含 1800 檔掃描、TOP20 排名、單股深度研判方案 |
-| [`references/github-landscape.md`](./references/github-landscape.md) | 參考 GitHub 熱門量化與回測專案後整理出的設計模式 |
-| [`agents/openai.yaml`](./agents/openai.yaml) | skill UI metadata |
+| [`references/agent-analyst-blueprint.md`](./references/agent-analyst-blueprint.md) | 市場掃描、Top 20 與單股 deep-dive 的分析藍圖 |
 | [`config/weights.yaml`](./config/weights.yaml) | 雷達評分權重設定 |
 | [`config/universe.yaml`](./config/universe.yaml) | 台股掃描股票池 |
 | [`config/action_rules.yaml`](./config/action_rules.yaml) | 買入區、停損、停利與 deep-dive 行動規則 |
-| [`scripts/run_daily_scan.py`](./scripts/run_daily_scan.py) | 第一版 daily scan demo script |
-| [`app/streamlit_app.py`](./app/streamlit_app.py) | Streamlit dashboard skeleton |
-
-這代表這個 repo 不只是專案說明，而是一套真正能讓 agent 學會「如何分析台股」的可重用 skill。
-
-### 資深分析師模式
-
-這個 skill 正在往兩段式能力演進：
-
-1. 先掃描全市場
-   以約 1800 檔台股為目標 universe，先做市場 regime、族群輪動、個股因子與風險過濾，再選出 Top 20。
-2. 再深挖單一股票
-   若使用者點名某一檔，會切換成 deep-dive 模式，補上 peer map、營運支持、籌碼、催化事件、情境樹與買賣計畫。
-
-這讓 agent 不只是選股器，而更像一位會先觀察全市場、再對關鍵標的提出研究備忘錄的分析師。
+| [`scripts/run_daily_scan.py`](./scripts/run_daily_scan.py) | daily scan demo script |
+| [`app/streamlit_app.py`](./app/streamlit_app.py) | dashboard skeleton |
 
 ### 快速開始
 
