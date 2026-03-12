@@ -20,12 +20,15 @@ def _load_mapping(path: Path) -> dict[str, Any]:
     return data
 
 
-def load_project_config(project_root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+def load_project_config(
+    project_root: Path,
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], dict[str, Any]]:
     config_dir = project_root / "config"
     settings = _load_mapping(config_dir / "settings.yaml")
     weights = _load_mapping(config_dir / "weights.yaml")
     universe = _load_mapping(config_dir / "universe.yaml")
-    return settings, weights, universe
+    action_rules = _load_mapping(config_dir / "action_rules.yaml")
+    return settings, weights, universe, action_rules
 
 
 def resolve_output_dir(project_root: Path, settings: dict[str, Any]) -> Path:

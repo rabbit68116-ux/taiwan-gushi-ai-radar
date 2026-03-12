@@ -11,6 +11,7 @@ from statistics import mean
 from typing import Any
 
 from .demo_data import DEMO_STOCK_FACTORS
+from .demo_market_context import DEMO_PRICE_CONTEXT
 
 POSITIVE_COMPONENTS = (
     ("trend", "Trend"),
@@ -38,6 +39,24 @@ def _signal_for_score(score: float) -> str:
     return "Risk Alert"
 
 
+def _setup_type(metrics: dict[str, Any]) -> str:
+    if metrics["momentum"] >= 0.85 and metrics["volume"] >= 0.70:
+        return "breakout"
+    if metrics["trend"] >= 0.75 and metrics["risk"] <= 0.25:
+        return "trend_pullback"
+    return "early_base"
+
+
+def _direction_bias(score: float, metrics: dict[str, Any]) -> str:
+    if score >= 75 and metrics["momentum"] >= 0.85:
+        return "Bullish continuation"
+    if score >= 65:
+        return "Constructive uptrend"
+    if score >= 50:
+        return "Range to positive bias"
+    return "Defensive / avoid"
+
+
 def _next_trigger(metrics: dict[str, Any]) -> str:
     if metrics["risk"] >= 0.32:
         return "Need cleaner volatility and firmer MA20 support"
@@ -46,6 +65,61 @@ def _next_trigger(metrics: dict[str, Any]) -> str:
     if metrics["capital_flow"] < 0.62:
         return "Need stronger institutional flow confirmation"
     return "Hold relative strength and avoid failed-breakout selling"
+
+
+def _fmt_price(value: float) -> str:
+    if value >= 1000:
+        return f"{value:,.0f}"
+    if value >= 100:
+        return f"{value:,.1f}"
+    return f"{value:,.2f}"
+
+
+def _action_plan(
+    metrics: dict[str, Any],
+    action_rules: dict[str, Any],
+    score: float,
+    signal: str,
+    regime: str,
+    symbol: str,
+) -> dict[str, str]:
+    price_context = DEMO_PRICE_CONTEXT[symbol]
+    reference_price = float(price_context["reference_price"])
+    atr_pct = float(price_context["atr_pct"])
+    setup_type = _setup_type(metrics)
+    entry_model = action_rules["entry_models"][setup_type]
+    stop_mult = (
+        action_rules["risk"]["tight_stop_atr_mult"]
+        if regime in {"bear", "high_volatility"} or score < 60
+        else action_rules["risk"]["stop_atr_mult"]
+    )
+
+    buy_min = reference_price * (1 + atr_pct * float(entry_model["buy_min_atr"]))
+    buy_max = reference_price * (1 + atr_pct * float(entry_model["buy_max_atr"]))
+    stop_loss = min(buy_min, buy_max) - reference_price * atr_pct * float(stop_mult)
+    tp1 = reference_price * (1 + atr_pct * float(action_rules["targets"]["tp1_atr_mult"]))
+    tp2 = reference_price * (1 + atr_pct * float(action_rules["targets"]["tp2_atr_mult"]))
+
+    if signal in {"Sell Watch", "Risk Alert"}:
+        action_note = "No long entry. Wait for structure rebuild or avoid."
+    elif setup_type == "breakout":
+        action_note = "Buy only if breakout holds with expanding volume."
+    elif setup_type == "trend_pullback":
+        action_note = "Prefer pullback entries near MA20-style support, not extended chasing."
+    else:
+        action_note = "Treat as early-base watchlist name until volume and flow improve."
+
+    return {
+        "setup_type": setup_type,
+        "direction_bias": _direction_bias(score, metrics),
+        "reference_price": _fmt_price(reference_price),
+        "buy_zone": f"{_fmt_price(min(buy_min, buy_max))} - {_fmt_price(max(buy_min, buy_max))}",
+        "stop_loss": _fmt_price(stop_loss),
+        "take_profit_1": _fmt_price(tp1),
+        "take_profit_2": _fmt_price(tp2),
+        "sell_plan": "Trim into TP1, trail under MA20 / failed breakout for the rest.",
+        "action_note": action_note,
+    }
 
 
 def _market_component_value(settings: dict[str, Any], regime: str) -> float:
@@ -76,6 +150,7 @@ def generate_scan_result(
     settings: dict[str, Any],
     weights: dict[str, Any],
     universe: dict[str, Any],
+    action_rules: dict[str, Any],
     *,
     analysis_date: str | None = None,
     regime: str | None = None,
@@ -96,6 +171,7 @@ def generate_scan_result(
         breakdown = _factor_breakdown(metrics, weights, market_value)
         score = _clamp_score(sum(breakdown.values()))
         signal = _signal_for_score(score)
+        action_plan = _action_plan(metrics, action_rules, score, signal, regime, symbol)
         records.append(
             {
                 "symbol": symbol,
@@ -111,6 +187,7 @@ def generate_scan_result(
                 "next_trigger": _next_trigger(metrics),
                 "thesis": metrics["thesis"],
                 "factor_breakdown": breakdown,
+                **action_plan,
             }
         )
 
@@ -162,7 +239,13 @@ def write_scan_outputs(output_dir: Path, scan_result: dict[str, Any]) -> None:
         "market",
         "sector",
         "radar_score",
+        "direction_bias",
         "signal",
+        "setup_type",
+        "buy_zone",
+        "stop_loss",
+        "take_profit_1",
+        "take_profit_2",
         "relative_strength",
         "key_drivers",
         "main_risk_flag",
@@ -193,13 +276,14 @@ def write_scan_outputs(output_dir: Path, scan_result: dict[str, Any]) -> None:
         "",
         "## Top 20 Watchlist",
         "",
-        "| Rank | Symbol | Name | Sector | Radar Score | Signal | Key Drivers | Main Risk |",
-        "|---|---|---|---|---:|---|---|---|",
+        "| Rank | Symbol | Name | Sector | Radar Score | Direction | Buy Zone | Stop | TP1 | Risk |",
+        "|---|---|---|---|---:|---|---|---|---|---|",
     ]
     for index, row in enumerate(top_rows, start=1):
         lines.append(
             f"| {index} | {row['symbol']} | {row['name']} | {row['sector']} | "
-            f"{row['radar_score']} | {row['signal']} | {row['key_drivers']} | {row['main_risk_flag']} |"
+            f"{row['radar_score']} | {row['direction_bias']} | {row['buy_zone']} | "
+            f"{row['stop_loss']} | {row['take_profit_1']} | {row['main_risk_flag']} |"
         )
     lines.extend(
         [

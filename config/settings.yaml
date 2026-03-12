@@ -4,7 +4,9 @@
     "mode": "demo"
   },
   "scan": {
+    "production_target_universe_size": 1800,
     "top_n": 20,
+    "deep_dive_top_k": 3,
     "default_horizon": "swing"
   },
   "market": {

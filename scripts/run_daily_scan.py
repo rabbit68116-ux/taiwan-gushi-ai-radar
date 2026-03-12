@@ -30,13 +30,14 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    settings, weights, universe = load_project_config(PROJECT_ROOT)
+    settings, weights, universe, action_rules = load_project_config(PROJECT_ROOT)
     output_dir = resolve_output_dir(PROJECT_ROOT, settings)
 
     scan_result = generate_scan_result(
         settings,
         weights,
         universe,
+        action_rules,
         analysis_date=args.analysis_date,
         regime=args.regime,
         top_n=args.top_n,
@@ -51,7 +52,8 @@ def main() -> int:
     for index, row in enumerate(scan_result["top20"][:5], start=1):
         print(
             f"{index}. {row['symbol']} {row['name']} | "
-            f"Score {row['radar_score']} | {row['signal']} | {row['main_risk_flag']}"
+            f"Score {row['radar_score']} | {row['direction_bias']} | "
+            f"Buy {row['buy_zone']} | Stop {row['stop_loss']}"
         )
     return 0
 

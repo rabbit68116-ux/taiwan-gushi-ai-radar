@@ -70,6 +70,10 @@ When the user asks for a list, return:
 | Name | yes |
 | Sector | yes |
 | Score | yes |
+| Direction Bias | yes |
+| Buy Zone | yes |
+| Stop Loss | yes |
+| Take Profit | yes |
 | Main driver | yes |
 | Main risk | yes |
 | Next trigger | yes |
@@ -91,7 +95,36 @@ When proposing a strategy, define:
 
 If any of these are missing, say the proposal is incomplete.
 
-## 7. Anti-patterns
+## 7. Action-level output
+
+When the user asks "can I buy this?" or wants a professional-style stock plan, add:
+
+- setup type: breakout / trend pullback / early base
+- buy zone
+- aggressive trigger
+- conservative trigger
+- stop loss
+- TP1 / TP2
+- invalidation
+
+The buy/sell plan must match the horizon. Do not give a swing target with an intraday-style stop.
+
+## 8. Deep-dive stock memo
+
+For a single-stock deep dive, include:
+
+- market regime
+- sector and peer map
+- business / revenue support
+- chip flow
+- multi-timeframe structure
+- catalyst calendar
+- scenario tree
+- action plan
+
+This is the step that makes the agent feel like an analyst instead of a screener.
+
+## 9. Anti-patterns
 
 Avoid:
 
@@ -101,7 +134,7 @@ Avoid:
 - using today's sector winners to explain a historical signal that did not have that information yet
 - comparing illiquid OTC names to mega-cap trend behavior without penalty
 
-## 8. Backtest hygiene
+## 10. Backtest hygiene
 
 Always be alert to:
 
@@ -112,7 +145,7 @@ Always be alert to:
 - ignored trading halts or liquidity issues
 - cherry-picked date ranges
 
-## 9. When not to predict
+## 11. When not to predict
 
 Downgrade or refuse a strong prediction if:
 
@@ -121,7 +154,7 @@ Downgrade or refuse a strong prediction if:
 - the stock is too illiquid for confident chart claims
 - the user asks for certainty rather than scenarios
 
-## 10. Minimal good answer
+## 12. Minimal good answer
 
 Even a short answer should include:
 

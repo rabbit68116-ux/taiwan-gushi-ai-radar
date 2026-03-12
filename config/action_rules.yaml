@@ -1,0 +1,46 @@
+{
+  "horizons": {
+    "scan_default": "swing",
+    "deep_dive_default": "tactical_and_swing"
+  },
+  "ranking": {
+    "top_n": 20,
+    "soft_veto_risk_floor": 0.32,
+    "hard_veto_risk_floor": 0.40
+  },
+  "entry_models": {
+    "breakout": {
+      "buy_min_atr": 0.00,
+      "buy_max_atr": 0.75
+    },
+    "trend_pullback": {
+      "buy_min_atr": -1.00,
+      "buy_max_atr": -0.25
+    },
+    "early_base": {
+      "buy_min_atr": -0.75,
+      "buy_max_atr": 0.25
+    }
+  },
+  "risk": {
+    "stop_atr_mult": 1.20,
+    "tight_stop_atr_mult": 0.90
+  },
+  "targets": {
+    "tp1_atr_mult": 2.00,
+    "tp2_atr_mult": 4.00
+  },
+  "deep_dive": {
+    "required_sections": [
+      "market_regime",
+      "sector_map",
+      "business_quality",
+      "chip_flow",
+      "technical_structure",
+      "event_calendar",
+      "scenario_tree",
+      "action_plan",
+      "invalidation"
+    ]
+  }
+}

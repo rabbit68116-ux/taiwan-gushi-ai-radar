@@ -41,14 +41,27 @@ Open-source Taiwan stock market research, scoring, signal, and backtesting frame
 | [`SKILL.md`](./SKILL.md) | agent 的核心工作流與判斷規則 |
 | [`references/taiwan-market-playbook.md`](./references/taiwan-market-playbook.md) | 台股市場判斷、因子與風險規則 |
 | [`references/prediction-framework.md`](./references/prediction-framework.md) | 預測輸出格式、情境推演與信心框架 |
+| [`references/agent-analyst-blueprint.md`](./references/agent-analyst-blueprint.md) | 1800 檔掃描、TOP20 排名、單股深度研判方案 |
 | [`references/github-landscape.md`](./references/github-landscape.md) | 參考 GitHub 熱門量化與回測專案後整理出的設計模式 |
 | [`agents/openai.yaml`](./agents/openai.yaml) | skill UI metadata |
 | [`config/weights.yaml`](./config/weights.yaml) | 雷達評分權重設定 |
 | [`config/universe.yaml`](./config/universe.yaml) | 台股掃描股票池 |
+| [`config/action_rules.yaml`](./config/action_rules.yaml) | 買入區、停損、停利與 deep-dive 行動規則 |
 | [`scripts/run_daily_scan.py`](./scripts/run_daily_scan.py) | 第一版 daily scan demo script |
 | [`app/streamlit_app.py`](./app/streamlit_app.py) | Streamlit dashboard skeleton |
 
 這代表後續不只是在做一個專案介紹頁，而是在建立一個真的能讓 agent 學會「如何分析台股」的 reusable skill。
+
+### 資深分析師模式
+
+這個 skill 正在往兩段式能力演進：
+
+1. 先掃描全市場
+   以約 1800 檔台股為目標 universe，先做市場 regime、族群輪動、個股因子與風險過濾，再選出 Top 20。
+2. 再深挖單一股票
+   若使用者點名某一檔，會切換成 deep-dive 模式，補上 peer map、營運支持、籌碼、催化事件、情境樹與買賣計畫。
+
+這樣 agent 就不只是選股器，而更像一位會先掃全市場、再對重點標的下研究備忘錄的資深分析師。
 
 ### 快速開始
 
@@ -264,14 +277,27 @@ Beyond the architecture note, this repository is now being structured as a reusa
 | [`SKILL.md`](./SKILL.md) | Core workflow and reasoning rules for the agent |
 | [`references/taiwan-market-playbook.md`](./references/taiwan-market-playbook.md) | Taiwan-specific factor, regime, and risk logic |
 | [`references/prediction-framework.md`](./references/prediction-framework.md) | Forecast formatting, scenario framing, and confidence discipline |
+| [`references/agent-analyst-blueprint.md`](./references/agent-analyst-blueprint.md) | Blueprint for 1,800-stock scanning, Top 20 ranking, and deep-dive stock analysis |
 | [`references/github-landscape.md`](./references/github-landscape.md) | Design patterns extracted from leading open-source quant repos |
 | [`agents/openai.yaml`](./agents/openai.yaml) | Skill metadata for UI surfaces |
 | [`config/weights.yaml`](./config/weights.yaml) | Radar scoring weights |
 | [`config/universe.yaml`](./config/universe.yaml) | Scan universe configuration |
+| [`config/action_rules.yaml`](./config/action_rules.yaml) | Buy zone, stop, take-profit, and deep-dive action rules |
 | [`scripts/run_daily_scan.py`](./scripts/run_daily_scan.py) | First-pass daily scan demo script |
 | [`app/streamlit_app.py`](./app/streamlit_app.py) | Streamlit dashboard skeleton |
 
 This shifts the repo from a concept page into a real skill bundle that can teach an AI agent how to reason about Taiwan stocks.
+
+### Senior Analyst Mode
+
+The skill is being designed around a two-stage workflow:
+
+1. Market-wide sweep
+   Target roughly 1,800 Taiwan stocks, score them through regime, sector rotation, stock factors, and risk vetoes, then return a Top 20 shortlist.
+2. Single-stock deep dive
+   When a user names one stock, switch into memo mode with peer mapping, business support, chip flow, catalyst timing, scenario tree, and action plan.
+
+This is the difference between a stock screener and an analyst-grade agent.
 
 ### Quick Start
 

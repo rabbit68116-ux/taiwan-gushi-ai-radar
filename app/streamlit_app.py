@@ -19,12 +19,12 @@ from taiwan_gushi_ai_radar.demo_scan import generate_scan_result
 
 
 def load_scan_payload() -> dict:
-    settings, weights, universe = load_project_config(PROJECT_ROOT)
+    settings, weights, universe, action_rules = load_project_config(PROJECT_ROOT)
     output_dir = resolve_output_dir(PROJECT_ROOT, settings)
     json_path = output_dir / "daily_top20.json"
     if json_path.exists():
         return json.loads(json_path.read_text(encoding="utf-8"))
-    return generate_scan_result(settings, weights, universe)
+    return generate_scan_result(settings, weights, universe, action_rules)
 
 
 def main() -> None:
@@ -52,9 +52,11 @@ def main() -> None:
             "name",
             "sector",
             "radar_score",
+            "direction_bias",
             "signal",
-            "relative_strength",
-            "key_drivers",
+            "setup_type",
+            "buy_zone",
+            "stop_loss",
             "main_risk_flag",
         ]
         st.dataframe(
@@ -89,11 +91,20 @@ def main() -> None:
         st.markdown(f"**{selected_row['symbol']} {selected_row['name']}**")
         st.write(f"Sector: `{selected_row['sector']}`")
         st.write(f"Signal: `{selected_row['signal']}`")
+        st.write(f"Direction bias: `{selected_row['direction_bias']}`")
+        st.write(f"Setup type: `{selected_row['setup_type']}`")
         st.write(f"Radar score: `{selected_row['radar_score']}`")
+        st.write(f"Reference price: `{selected_row['reference_price']}`")
+        st.write(f"Buy zone: `{selected_row['buy_zone']}`")
+        st.write(f"Stop loss: `{selected_row['stop_loss']}`")
+        st.write(f"Take profit 1: `{selected_row['take_profit_1']}`")
+        st.write(f"Take profit 2: `{selected_row['take_profit_2']}`")
         st.write(f"Relative strength: `{selected_row['relative_strength']}`")
         st.write(f"Key drivers: {selected_row['key_drivers']}")
         st.write(f"Main risk flag: {selected_row['main_risk_flag']}")
         st.write(f"Next trigger: {selected_row['next_trigger']}")
+        st.write(f"Sell plan: {selected_row['sell_plan']}")
+        st.write(f"Action note: {selected_row['action_note']}")
         st.write(f"Thesis: {selected_row['thesis']}")
 
     with detail_right:

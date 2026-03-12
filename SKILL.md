@@ -32,13 +32,15 @@ Default to factor-based, explainable reasoning. The goal is to help an agent jud
   Use for Taiwan-specific factor heuristics, regime logic, data priorities, and risk flags.
 - `references/prediction-framework.md`
   Use when the user wants forecasts, rankings, or strategy logic that must be phrased with uncertainty and invalidation.
+- `references/agent-analyst-blueprint.md`
+  Use when the task is to design or execute a 1,800-stock sweep, produce a Top 20 list with action levels, or switch from ranking mode into a deep-dive analyst memo.
 - `references/github-landscape.md`
   Use when designing or extending this skill based on leading open-source quant, backtesting, and research repos.
 
 ## Core workflow
 
 1. Classify the task.
-   Common modes: snapshot explanation, stock judgment, watchlist ranking, regime summary, daily scan, or forecast scenario.
+   Common modes: snapshot explanation, stock judgment, regime summary, full-universe scan, ranked Top 20 watchlist, or deep-dive forecast memo.
 
 2. Pin the date and horizon.
    Always make the analysis date explicit. For forecasts, define the horizon before reasoning:
@@ -69,10 +71,19 @@ Default to factor-based, explainable reasoning. The goal is to help an agent jud
 6. Score before forecasting.
    Use an explainable score, not a conclusion-first narrative. If a single number is needed, use the radar structure from the playbook and show major drivers.
 
-7. Add risk vetoes.
+7. Add action levels.
+   If the user wants advice-like structure, output:
+   - direction bias
+   - setup type
+   - buy zone
+   - stop loss
+   - take-profit ladder
+   - invalidation
+
+8. Add risk vetoes.
    A strong chart does not override bad liquidity, financing blow-off, heavy institutional selling, or weak market regime. Explicitly note veto conditions.
 
-8. Produce an answer with strict separation.
+9. Produce an answer with strict separation.
    Keep these sections distinct:
    - observation
    - interpretation
@@ -82,12 +93,25 @@ Default to factor-based, explainable reasoning. The goal is to help an agent jud
 
 ## Default answer patterns
 
+### For a full-universe scan
+
+When scanning roughly 1,800 Taiwan stocks:
+- do market regime first
+- rank sectors before ranking stocks
+- apply liquidity and risk vetoes before final Top 20 selection
+- avoid returning 20 names from the same overheated group unless breadth clearly supports it
+
 ### For a single stock judgment
 
 Return:
 - analysis date
 - market and sector context
 - radar-style factor summary
+- direction bias
+- setup type
+- buy zone
+- stop loss
+- take-profit ladder
 - key bullish and bearish drivers
 - risk flags
 - forecast scenario by horizon
@@ -101,9 +125,26 @@ Return a table with:
 - name
 - sector
 - radar score
+- direction bias
+- buy zone
+- stop loss
+- TP1
 - main drivers
 - main risk flag
 - next trigger to watch
+
+### For a deep-dive memo
+
+Upgrade from scan mode into memo mode and include:
+- market regime
+- sector and peer map
+- business and revenue support
+- chip flow
+- multi-timeframe structure
+- catalyst calendar
+- scenario tree
+- action plan
+- invalidation
 
 ### For a regime summary
 
@@ -133,6 +174,7 @@ Use:
 - TPEX and lower-liquidity names need harsher risk penalties because slippage and manipulation risk are higher.
 - Earnings, monthly revenue release windows, ex-dividend periods, and index-heavy sector rotations can distort short-term price action. Call these out.
 - External market-watch sites are useful for tracking and links, but historical research should prefer stable or validated data sources.
+- For a Top 20 list, prefer sector leaders and clean setups over lower-quality second-tier names from the same theme.
 
 ## Prediction discipline
 
