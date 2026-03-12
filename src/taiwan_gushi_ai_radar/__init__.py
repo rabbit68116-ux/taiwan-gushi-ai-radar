@@ -1,4 +1,4 @@
-"""Taiwan Gushi AI Radar demo package."""
+"""Taiwan Stock Radar demo package."""
 
 __all__ = ["__version__"]
 

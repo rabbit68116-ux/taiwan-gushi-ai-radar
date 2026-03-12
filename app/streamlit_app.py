@@ -1,4 +1,4 @@
-"""Streamlit demo for Taiwan Gushi AI Radar."""
+"""Streamlit demo for Taiwan Stock Radar."""
 
 from __future__ import annotations
 
@@ -33,8 +33,8 @@ def main() -> None:
     factors = pd.DataFrame(payload["sector_summary"])
     ranking_df = pd.DataFrame(records)
 
-    st.set_page_config(page_title="Taiwan Gushi AI Radar", page_icon="📈", layout="wide")
-    st.title("Taiwan Gushi AI Radar")
+    st.set_page_config(page_title="Taiwan Stock Radar", page_icon="📈", layout="wide")
+    st.title("Taiwan Stock Radar")
     st.caption("Demo-mode Streamlit dashboard for Taiwan stock ranking, signals, and regime summary.")
     st.info(payload["disclaimer"])
 

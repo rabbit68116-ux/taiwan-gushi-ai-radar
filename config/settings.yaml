@@ -1,6 +1,7 @@
 {
   "project": {
     "name": "taiwan-gushi-ai-radar",
+    "display_name": "Taiwan Stock Radar",
     "plan_version": "v1.1",
     "mode": "demo"
   },
@@ -23,7 +24,7 @@
     "output_dir": "output"
   },
   "app": {
-    "title": "Taiwan Gushi AI Radar",
+    "title": "Taiwan Stock Radar",
     "subtitle": "Taiwan stock market scan, ranking, and signal demo"
   }
 }
