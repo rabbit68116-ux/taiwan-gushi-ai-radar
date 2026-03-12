@@ -1,0 +1,26 @@
+{
+  "project": {
+    "name": "taiwan-gushi-ai-radar",
+    "mode": "demo"
+  },
+  "scan": {
+    "top_n": 20,
+    "default_horizon": "swing"
+  },
+  "market": {
+    "default_regime": "sideways",
+    "market_score_by_regime": {
+      "bull": 0.9,
+      "sideways": 0.6,
+      "bear": 0.3,
+      "high_volatility": 0.4
+    }
+  },
+  "paths": {
+    "output_dir": "output"
+  },
+  "app": {
+    "title": "Taiwan Gushi AI Radar",
+    "subtitle": "Taiwan stock market scan, ranking, and signal demo"
+  }
+}

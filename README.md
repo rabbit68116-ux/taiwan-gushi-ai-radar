@@ -43,8 +43,32 @@ Open-source Taiwan stock market research, scoring, signal, and backtesting frame
 | [`references/prediction-framework.md`](./references/prediction-framework.md) | 預測輸出格式、情境推演與信心框架 |
 | [`references/github-landscape.md`](./references/github-landscape.md) | 參考 GitHub 熱門量化與回測專案後整理出的設計模式 |
 | [`agents/openai.yaml`](./agents/openai.yaml) | skill UI metadata |
+| [`config/weights.yaml`](./config/weights.yaml) | 雷達評分權重設定 |
+| [`config/universe.yaml`](./config/universe.yaml) | 台股掃描股票池 |
+| [`scripts/run_daily_scan.py`](./scripts/run_daily_scan.py) | 第一版 daily scan demo script |
+| [`app/streamlit_app.py`](./app/streamlit_app.py) | Streamlit dashboard skeleton |
 
 這代表後續不只是在做一個專案介紹頁，而是在建立一個真的能讓 agent 學會「如何分析台股」的 reusable skill。
+
+### 快速開始
+
+安裝相依套件：
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+執行 daily scan demo：
+
+```bash
+python3 scripts/run_daily_scan.py
+```
+
+啟動 Streamlit demo：
+
+```bash
+streamlit run app/streamlit_app.py
+```
 
 ### 專案亮點
 
@@ -242,8 +266,32 @@ Beyond the architecture note, this repository is now being structured as a reusa
 | [`references/prediction-framework.md`](./references/prediction-framework.md) | Forecast formatting, scenario framing, and confidence discipline |
 | [`references/github-landscape.md`](./references/github-landscape.md) | Design patterns extracted from leading open-source quant repos |
 | [`agents/openai.yaml`](./agents/openai.yaml) | Skill metadata for UI surfaces |
+| [`config/weights.yaml`](./config/weights.yaml) | Radar scoring weights |
+| [`config/universe.yaml`](./config/universe.yaml) | Scan universe configuration |
+| [`scripts/run_daily_scan.py`](./scripts/run_daily_scan.py) | First-pass daily scan demo script |
+| [`app/streamlit_app.py`](./app/streamlit_app.py) | Streamlit dashboard skeleton |
 
 This shifts the repo from a concept page into a real skill bundle that can teach an AI agent how to reason about Taiwan stocks.
+
+### Quick Start
+
+Install dependencies:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+Run the demo daily scan:
+
+```bash
+python3 scripts/run_daily_scan.py
+```
+
+Launch the Streamlit demo:
+
+```bash
+streamlit run app/streamlit_app.py
+```
 
 ### Why It Stands Out
 

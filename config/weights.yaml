@@ -1,0 +1,10 @@
+{
+  "trend": 20,
+  "volume": 15,
+  "capital_flow": 20,
+  "quality": 10,
+  "momentum": 10,
+  "sector": 10,
+  "market": 5,
+  "risk_adjustment": -20
+}

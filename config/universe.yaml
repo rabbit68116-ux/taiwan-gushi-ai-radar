@@ -1,0 +1,30 @@
+{
+  "preset": "demo-tw-liquid-leaders",
+  "symbols": [
+    {"symbol": "2330", "name": "台積電", "market": "TWSE", "sector": "Semiconductor"},
+    {"symbol": "2454", "name": "聯發科", "market": "TWSE", "sector": "Semiconductor"},
+    {"symbol": "2303", "name": "聯電", "market": "TWSE", "sector": "Semiconductor"},
+    {"symbol": "3711", "name": "日月光投控", "market": "TWSE", "sector": "Semiconductor"},
+    {"symbol": "3034", "name": "聯詠", "market": "TWSE", "sector": "IC Design"},
+    {"symbol": "2317", "name": "鴻海", "market": "TWSE", "sector": "AI Server"},
+    {"symbol": "2382", "name": "廣達", "market": "TWSE", "sector": "AI Server"},
+    {"symbol": "3231", "name": "緯創", "market": "TWSE", "sector": "AI Server"},
+    {"symbol": "6669", "name": "緯穎", "market": "TWSE", "sector": "AI Server"},
+    {"symbol": "3017", "name": "奇鋐", "market": "TWSE", "sector": "Thermal"},
+    {"symbol": "3037", "name": "欣興", "market": "TWSE", "sector": "PCB"},
+    {"symbol": "3189", "name": "景碩", "market": "TPEX", "sector": "PCB"},
+    {"symbol": "2356", "name": "英業達", "market": "TWSE", "sector": "AI Server"},
+    {"symbol": "2376", "name": "技嘉", "market": "TWSE", "sector": "AI Server"},
+    {"symbol": "2603", "name": "長榮", "market": "TWSE", "sector": "Shipping"},
+    {"symbol": "2615", "name": "萬海", "market": "TWSE", "sector": "Shipping"},
+    {"symbol": "2882", "name": "國泰金", "market": "TWSE", "sector": "Financials"},
+    {"symbol": "2881", "name": "富邦金", "market": "TWSE", "sector": "Financials"},
+    {"symbol": "2891", "name": "中信金", "market": "TWSE", "sector": "Financials"},
+    {"symbol": "1303", "name": "南亞", "market": "TWSE", "sector": "Materials"},
+    {"symbol": "1216", "name": "統一", "market": "TWSE", "sector": "Consumer"},
+    {"symbol": "2207", "name": "和泰車", "market": "TWSE", "sector": "Consumer"},
+    {"symbol": "3661", "name": "世芯-KY", "market": "TWSE", "sector": "IC Design"},
+    {"symbol": "5274", "name": "信驊", "market": "TWSE", "sector": "IC Design"},
+    {"symbol": "4938", "name": "和碩", "market": "TWSE", "sector": "Electronics"}
+  ]
+}

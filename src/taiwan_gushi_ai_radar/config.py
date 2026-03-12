@@ -1,0 +1,33 @@
+"""Config loading helpers for demo-mode scans."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any
+
+
+def _load_mapping(path: Path) -> dict[str, Any]:
+    text = path.read_text(encoding="utf-8")
+    try:
+        import yaml  # type: ignore
+
+        data = yaml.safe_load(text)
+    except ModuleNotFoundError:
+        data = json.loads(text)
+    if not isinstance(data, dict):
+        raise ValueError(f"Expected mapping in {path}")
+    return data
+
+
+def load_project_config(project_root: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    config_dir = project_root / "config"
+    settings = _load_mapping(config_dir / "settings.yaml")
+    weights = _load_mapping(config_dir / "weights.yaml")
+    universe = _load_mapping(config_dir / "universe.yaml")
+    return settings, weights, universe
+
+
+def resolve_output_dir(project_root: Path, settings: dict[str, Any]) -> Path:
+    output_dir = settings.get("paths", {}).get("output_dir", "output")
+    return project_root / output_dir

@@ -5,6 +5,8 @@ __pycache__/
 .mypy_cache/
 .venv/
 venv/
+.vendor/
+.venv-broken-*/
 
 # Jupyter
 .ipynb_checkpoints/
