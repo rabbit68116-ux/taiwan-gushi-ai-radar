@@ -1,17 +1,17 @@
 {
-  "version": "v1.2",
-  "default_council_mode": "single_stock_taiwan_equity_committee",
+  "version": "v1.3",
+  "default_council_mode": "single_stock_taiwan_equity_strategy_committee",
   "agents": [
     {
       "id": "chief_strategist",
       "display_name": "Chief Strategist",
       "personality": "calm, integrative, decision-oriented",
-      "weight": 0.24,
+      "weight": 0.18,
       "focus_areas": [
         "market backdrop",
         "cross-agent synthesis",
         "decision framing",
-        "conflict resolution"
+        "capital allocation language"
       ],
       "primary_indicators": [
         "market_regime",
@@ -24,18 +24,19 @@
       "id": "technical_strategist",
       "display_name": "Technical Strategist",
       "personality": "pattern-driven, strict on structure, timing-sensitive",
-      "weight": 0.18,
+      "weight": 0.16,
       "focus_areas": [
         "trend structure",
         "support and resistance",
         "breakout quality",
-        "volume confirmation"
+        "volatility state"
       ],
       "primary_indicators": [
         "daily_trend",
         "weekly_trend",
         "relative_strength",
         "volume_expansion",
+        "adx",
         "atr_structure"
       ]
     },
@@ -43,7 +44,7 @@
       "id": "chip_flow_analyst",
       "display_name": "Chip Flow Analyst",
       "personality": "skeptical, tape-aware, positioning-focused",
-      "weight": 0.18,
+      "weight": 0.14,
       "focus_areas": [
         "foreign flow",
         "investment trust flow",
@@ -62,7 +63,7 @@
       "id": "fundamental_analyst",
       "display_name": "Fundamental Analyst",
       "personality": "patient, business-first, quality-biased",
-      "weight": 0.17,
+      "weight": 0.14,
       "focus_areas": [
         "monthly revenue trajectory",
         "earnings quality",
@@ -81,7 +82,7 @@
       "id": "catalyst_analyst",
       "display_name": "Catalyst Analyst",
       "personality": "timing-aware, event-sensitive, forward-looking",
-      "weight": 0.11,
+      "weight": 0.10,
       "focus_areas": [
         "earnings timing",
         "monthly revenue release",
@@ -100,7 +101,7 @@
       "id": "risk_manager",
       "display_name": "Risk Manager",
       "personality": "conservative, loss-averse, objection-driven",
-      "weight": 0.12,
+      "weight": 0.11,
       "focus_areas": [
         "liquidity risk",
         "volatility asymmetry",
@@ -114,20 +115,64 @@
         "slippage_risk",
         "invalidation_clarity"
       ]
+    },
+    {
+      "id": "strategy_architect",
+      "display_name": "Strategy Architect",
+      "personality": "framework-first, selective, regime-aware",
+      "weight": 0.09,
+      "focus_areas": [
+        "strategy-family selection",
+        "regime fit",
+        "setup classification",
+        "strategy conflict resolution"
+      ],
+      "primary_indicators": [
+        "strategy_fit_score",
+        "regime_alignment",
+        "breakout_validity",
+        "pullback_depth",
+        "volatility_compression"
+      ]
+    },
+    {
+      "id": "quant_validation_analyst",
+      "display_name": "Quant Validation Analyst",
+      "personality": "methodical, skeptical, overfitting-aware",
+      "weight": 0.08,
+      "focus_areas": [
+        "risk-adjusted performance",
+        "tail-risk review",
+        "parameter stability",
+        "robustness testing"
+      ],
+      "primary_indicators": [
+        "sharpe_ratio",
+        "sortino_ratio",
+        "calmar_ratio",
+        "cvar_95",
+        "deflated_sharpe_ratio",
+        "walk_forward_stability"
+      ]
     }
   ],
   "decision_rules": {
     "weights_must_sum_to": 1.0,
     "consensus_method": "weighted_synthesis_with_visible_dissent",
-    "minimum_required_agents": 4,
+    "minimum_required_agents": 6,
     "always_include": [
       "chief_strategist",
-      "risk_manager"
+      "risk_manager",
+      "strategy_architect",
+      "quant_validation_analyst"
     ],
     "final_output_order": [
       "stock_context",
       "market_regime",
       "specialist_briefs",
+      "strategy_selection",
+      "committee_scorecard",
+      "validation_scorecard",
       "agreement_and_disagreement",
       "final_thesis",
       "scenario_tree",

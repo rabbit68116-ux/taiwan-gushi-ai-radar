@@ -1,0 +1,167 @@
+{
+  "version": "v1.3",
+  "primary_scope": "single_stock_taiwan_equity",
+  "strategy_families": [
+    {
+      "id": "trend_following",
+      "display_name": "趨勢跟隨 / Time-Series Momentum",
+      "preferred_regimes": [
+        "bull",
+        "sideways"
+      ],
+      "purpose": "在市場與個股同向延續時，捕捉趨勢續航。",
+      "primary_indicators": [
+        "6m_return",
+        "12m_return",
+        "sma50_over_sma200",
+        "adx",
+        "macd",
+        "natr"
+      ],
+      "confirmations": [
+        "weekly_trend_up",
+        "institutional_flow_positive",
+        "volatility_not_disorderly"
+      ],
+      "disqualifiers": [
+        "momentum_crash_risk",
+        "failed_peer_leadership",
+        "dense_event_window"
+      ]
+    },
+    {
+      "id": "relative_strength_leadership",
+      "display_name": "相對強勢領導 / Relative-Strength Leadership",
+      "preferred_regimes": [
+        "bull",
+        "sideways"
+      ],
+      "purpose": "在同族群中辨識領導股，而不是落後補漲股。",
+      "primary_indicators": [
+        "relative_strength_rank",
+        "peer_outperformance",
+        "foreign_net_buy",
+        "trust_net_buy",
+        "turnover_value"
+      ],
+      "confirmations": [
+        "peer_group_strength",
+        "institutional_support",
+        "liquidity_above_threshold"
+      ],
+      "disqualifiers": [
+        "leadership_rollover",
+        "flow_distribution",
+        "thin_liquidity"
+      ]
+    },
+    {
+      "id": "breakout_confirmation",
+      "display_name": "突破確認 / Breakout Confirmation",
+      "preferred_regimes": [
+        "bull",
+        "sideways"
+      ],
+      "purpose": "避免假突破，只在結構與量能同步擴張時出手。",
+      "primary_indicators": [
+        "donchian_breakout",
+        "volume_expansion",
+        "adx",
+        "obv",
+        "mfi"
+      ],
+      "confirmations": [
+        "close_above_range_high",
+        "expanding_volume",
+        "broad_market_supportive"
+      ],
+      "disqualifiers": [
+        "event_gap_risk",
+        "late_stage_extension",
+        "breakout_without_flow"
+      ]
+    },
+    {
+      "id": "pullback_continuation",
+      "display_name": "趨勢拉回 / Pullback Continuation",
+      "preferred_regimes": [
+        "bull",
+        "sideways"
+      ],
+      "purpose": "在上升趨勢中的健康回檔裡尋找較好的風險報酬比。",
+      "primary_indicators": [
+        "ma20_support",
+        "ma50_support",
+        "atr_pullback_depth",
+        "rsi_reset",
+        "volume_contraction"
+      ],
+      "confirmations": [
+        "trend_still_intact",
+        "support_holds",
+        "chip_flow_not_deteriorating"
+      ],
+      "disqualifiers": [
+        "support_failure",
+        "distribution_during_pullback",
+        "event_window_instability"
+      ]
+    },
+    {
+      "id": "volatility_contraction_expansion",
+      "display_name": "波動收縮轉擴張 / Volatility Contraction Expansion",
+      "preferred_regimes": [
+        "bull",
+        "sideways"
+      ],
+      "purpose": "在收縮整理後等待方向選擇，避免在雜訊中過早追價。",
+      "primary_indicators": [
+        "bollinger_band_width",
+        "atr_compression",
+        "volume_dry_up",
+        "range_tightness"
+      ],
+      "confirmations": [
+        "clean_compression",
+        "leadership_not_lost",
+        "breakout_direction_confirmed"
+      ],
+      "disqualifiers": [
+        "random_event_gap_risk",
+        "weak_peer_group",
+        "compression_without_follow_through"
+      ]
+    },
+    {
+      "id": "tactical_mean_reversion",
+      "display_name": "戰術型均值回歸 / Tactical Mean Reversion",
+      "preferred_regimes": [
+        "sideways"
+      ],
+      "purpose": "只在高品質標的短期過度偏離時做戰術性反彈。",
+      "primary_indicators": [
+        "rsi",
+        "mfi",
+        "distance_from_ma20",
+        "gap_exhaustion",
+        "short_term_volume_spike"
+      ],
+      "confirmations": [
+        "quality_name",
+        "oversold_without_structural_break",
+        "event_risk_not_imminent"
+      ],
+      "disqualifiers": [
+        "persistent_downtrend",
+        "liquidity_stress",
+        "earnings_or_revenue_risk"
+      ]
+    }
+  ],
+  "selection_rules": {
+    "require_primary_and_secondary_strategy": true,
+    "require_do_not_trade_strategy": true,
+    "require_regime_commentary": true,
+    "fallback_when_conflicted": "reduce_size_or_wait_for_confirmation"
+  }
+}

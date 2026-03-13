@@ -1,0 +1,103 @@
+{
+  "version": "v1.3",
+  "panels": {
+    "performance": [
+      "cagr",
+      "annualized_volatility",
+      "sharpe_ratio",
+      "sortino_ratio",
+      "calmar_ratio"
+    ],
+    "trade_quality": [
+      "profit_factor",
+      "expectancy",
+      "win_rate",
+      "exposure",
+      "turnover",
+      "trade_count"
+    ],
+    "tail_risk": [
+      "max_drawdown",
+      "value_at_risk_95",
+      "cvar_95",
+      "cdar_95",
+      "ulcer_index",
+      "omega_ratio",
+      "tail_ratio"
+    ],
+    "robustness": [
+      "walk_forward_stability",
+      "purged_cross_validation",
+      "combinatorial_purged_cross_validation",
+      "deflated_sharpe_ratio",
+      "parameter_stability",
+      "cost_sensitivity",
+      "regime_split_performance"
+    ],
+    "execution_diagnostics": [
+      "mae",
+      "mfe",
+      "median_holding_period",
+      "gap_risk_rate",
+      "stop_hit_rate",
+      "event_window_hit_rate",
+      "slippage_bps_sensitivity"
+    ]
+  },
+  "reporting_requirements": {
+    "always_report": [
+      "sharpe_ratio",
+      "sortino_ratio",
+      "calmar_ratio",
+      "profit_factor",
+      "expectancy",
+      "max_drawdown",
+      "cvar_95",
+      "deflated_sharpe_ratio"
+    ],
+    "minimum_trade_count": 30,
+    "require_cost_sensitivity_commentary": true,
+    "require_regime_split_commentary": true
+  },
+  "heuristic_bands": {
+    "sharpe_ratio": {
+      "weak_below": 0.6,
+      "acceptable_from": 1.0,
+      "strong_from": 1.4
+    },
+    "sortino_ratio": {
+      "weak_below": 0.9,
+      "acceptable_from": 1.3,
+      "strong_from": 1.8
+    },
+    "calmar_ratio": {
+      "weak_below": 0.4,
+      "acceptable_from": 0.7,
+      "strong_from": 1.0
+    },
+    "profit_factor": {
+      "weak_below": 1.1,
+      "acceptable_from": 1.25,
+      "strong_from": 1.6
+    },
+    "deflated_sharpe_ratio": {
+      "weak_below": 0.4,
+      "acceptable_from": 0.55,
+      "strong_from": 0.7
+    },
+    "max_drawdown": {
+      "caution_above": 0.2,
+      "high_risk_above": 0.3
+    },
+    "cvar_95": {
+      "caution_above": 0.03,
+      "high_risk_above": 0.05
+    }
+  },
+  "committee_metrics": {
+    "strategy_fit_score": "How well the selected strategy matches the current regime and setup structure.",
+    "evidence_quality_score": "How complete and fresh the evidence stack is across price, flow, fundamentals, and catalysts.",
+    "disagreement_penalty": "How much visible specialist disagreement should reduce the final conviction.",
+    "execution_clarity_score": "How clearly the committee can define buy zone, stop, targets, and invalidation."
+  }
+}

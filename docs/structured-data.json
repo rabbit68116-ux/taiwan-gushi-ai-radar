@@ -19,7 +19,7 @@
       "publisher": {
         "@id": "https://rabbit68116-ux.github.io/taiwan-stock-radar/#organization"
       },
-      "description": "Taiwan Stock Radar 是一個以單一台股為核心的多 Agent 研究網站，展示如何讓 AI analyst 針對一檔股票進行正式會議式分析。 Taiwan Stock Radar is a professional website for single-stock Taiwan equity analysis through a multi-agent research council."
+      "description": "Taiwan Stock Radar 是一個以單一台股為核心的策略增強研究網站，展示 AI analyst 如何透過正式會議完成策略選擇、驗證與決策整合。 Taiwan Stock Radar is a strategy-enhanced website for single-stock Taiwan equity analysis through formal multi-agent strategy selection and validation."
     },
     {
       "@type": "SoftwareApplication",
@@ -29,7 +29,7 @@
       "operatingSystem": "Web",
       "url": "https://rabbit68116-ux.github.io/taiwan-stock-radar/",
       "downloadUrl": "https://github.com/rabbit68116-ux/taiwan-stock-radar",
-      "description": "Taiwan Stock Radar 是一個開源台股 AI research skill，會讓多位 specialist AI analyst 對同一檔股票開會，輸出趨勢情境、買賣區間與失效條件。 Taiwan Stock Radar is an open-source Taiwan equity research skill that runs a specialist AI council around one stock and returns scenarios, action zones, and invalidation rules."
+      "description": "Taiwan Stock Radar 是一個開源台股 AI research skill，會讓多位 specialist AI analyst 對同一檔股票開會，完成策略選擇、驗證面板與操作計畫。 Taiwan Stock Radar is an open-source Taiwan equity research skill that runs a specialist AI committee around one stock and returns strategy selection, validation panels, action zones, and invalidation rules."
     }
   ]
 }

@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Taiwan Stock Radar 案例頁 Case Study</title>
-  <meta name="description" content="Taiwan Stock Radar 單股案例頁，展示多 Agent 台股研究委員會如何形成正式決策文件，包含評分、情境預測、買賣區間與反方意見。">
+  <meta name="description" content="Taiwan Stock Radar 單股案例頁，展示多 Agent 台股策略委員會如何形成正式決策文件，包含策略模組、驗證面板、情境預測、買賣區間與反方意見。">
   <link rel="canonical" href="https://rabbit68116-ux.github.io/taiwan-stock-radar/case-study.html">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Taiwan Stock Radar 案例頁 Case Study">
-  <meta property="og:description" content="完整展示 Taiwan Stock Radar 單股多 Agent 研究會議的輸出樣貌。">
+  <meta property="og:description" content="完整展示 Taiwan Stock Radar 單股多 Agent 策略委員會的輸出樣貌。">
   <meta property="og:url" content="https://rabbit68116-ux.github.io/taiwan-stock-radar/case-study.html">
   <meta property="og:image" content="https://rabbit68116-ux.github.io/taiwan-stock-radar/assets/og-card.svg">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
@@ -51,16 +51,16 @@
       <div class="hero-grid">
         <article class="hero-card">
           <p class="eyebrow">展示型案例<span class="en-translation">Illustrative exhibit example</span></p>
-          <h1>單股研究委員會案例頁
-            <span class="en-translation">Single-Stock Council Case Study</span>
+          <h1>單股策略委員會案例頁
+            <span class="en-translation">Single-Stock Strategy Committee Case Study</span>
           </h1>
-          <p class="lead">這一頁展示的是 Taiwan Stock Radar 在一檔股票進入完整多 Agent 研討會議後，最終會輸出的決策文件長相。它是產品展示樣本，不是即時盤中喊單。</p>
-          <p class="lead en-translation">This page shows what Taiwan Stock Radar is designed to produce when one stock is reviewed through a full multi-agent meeting. It is a product exhibit, not a live trading call.</p>
+          <p class="lead">這一頁展示的是 Taiwan Stock Radar 在一檔股票進入完整多 Agent 策略委員會後，最終會輸出的決策文件長相。它是產品展示樣本，不是即時盤中喊單。</p>
+          <p class="lead en-translation">This page shows what Taiwan Stock Radar is designed to produce when one stock is reviewed through a full multi-agent strategy committee. It is a product exhibit, not a live trading call.</p>
           <div class="chip-row">
             <span class="chip">個案：2330 台積電<span class="en-translation">Case: 2330 TSMC</span></span>
             <span class="chip">日期：2026-03-13<span class="en-translation">Date: 2026-03-13</span></span>
             <span class="chip">週期：Swing<span class="en-translation">Horizon: Swing</span></span>
-            <span class="chip">模式：Full council memo<span class="en-translation">Mode: Full council memo</span></span>
+            <span class="chip">模式：Full strategy memo<span class="en-translation">Mode: Full strategy memo</span></span>
           </div>
         </article>
 
@@ -69,6 +69,12 @@
             <span class="en-translation">Case Snapshot</span>
           </h2>
           <div class="meta-list">
+            <div>
+              <span class="label">主策略<span class="en-translation">Primary strategy</span></span>
+              <span class="value">Relative-Strength Leadership
+                <span class="en-translation">Relative-Strength Leadership</span>
+              </span>
+            </div>
             <div>
               <span class="label">主要 thesis<span class="en-translation">Primary thesis</span></span>
               <span class="value">偏正向，但必須有紀律
@@ -141,6 +147,37 @@
       </section>
 
       <section>
+        <h2>策略引擎
+          <span class="en-translation">Strategy Engine</span>
+        </h2>
+        <p class="section-intro">`v1.3` 的案例頁不只說委員會怎麼看，也會明確指出哪一種策略模組最適合目前 setup，以及哪一種執行方式不該採用。</p>
+        <p class="section-intro en-translation">A `v1.3` case study does not stop at the committee view. It also states which strategy family best fits the current setup and which execution style should be avoided.</p>
+        <div class="grid">
+          <article class="card">
+            <h3>Primary strategy
+              <span class="en-translation">Primary strategy</span>
+            </h3>
+            <p>相對強勢領導。這檔股票目前更像族群領導股的回檔管理，而不是新故事的早期發現。</p>
+            <p class="en-translation">Relative-Strength Leadership. The stock currently looks more like a leadership-quality pullback management case than an early discovery of a new story.</p>
+          </article>
+          <article class="card">
+            <h3>Secondary strategy
+              <span class="en-translation">Secondary strategy</span>
+            </h3>
+            <p>趨勢拉回。若回檔深度與籌碼品質維持健康，這個模組可以支援更有紀律的切入。</p>
+            <p class="en-translation">Pullback Continuation. If pullback depth and flow quality stay healthy, this module supports a more disciplined entry.</p>
+          </article>
+          <article class="card">
+            <h3>Do not use
+              <span class="en-translation">Do not use</span>
+            </h3>
+            <p>戰術型均值回歸。這個案例不是單純 oversold bounce；若用反彈思維處理，容易錯估風險與部位節奏。</p>
+            <p class="en-translation">Tactical Mean Reversion. This is not a simple oversold bounce. Treating it that way would likely misprice risk and timing.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
         <h2>委員會評分卡
           <span class="en-translation">Committee Scorecard</span>
         </h2>
@@ -152,7 +189,7 @@
               <h3>Chief Strategist</h3>
               <span class="score-pill">78 / 100</span>
             </div>
-            <p class="score-meta">權重 0.24，信心 高至中<span class="en-translation">Weight 0.24, confidence high-medium</span></p>
+            <p class="score-meta">權重 0.18，信心 高至中<span class="en-translation">Weight 0.18, confidence high-medium</span></p>
             <div class="score-meter"><span style="width: 78%"></span></div>
             <p class="score-note">支持偏正向立場，但要求執行必須有紀律，並且持續檢查 thesis 是否仍被維持。<span class="en-translation">Supports a constructive stance while insisting on disciplined execution and active thesis maintenance.</span></p>
           </article>
@@ -161,7 +198,7 @@
               <h3>Technical Strategist</h3>
               <span class="score-pill">80 / 100</span>
             </div>
-            <p class="score-meta">權重 0.18，信心 中等<span class="en-translation">Weight 0.18, confidence medium</span></p>
+            <p class="score-meta">權重 0.16，信心 中等<span class="en-translation">Weight 0.16, confidence medium</span></p>
             <div class="score-meter"><span style="width: 80%"></span></div>
             <p class="score-note">偏好延續走勢，但仍想先看到回補結構被收復，才願意給出更高評價。<span class="en-translation">Likes the continuation structure, but still wants reclaim confirmation before a stronger upgrade.</span></p>
           </article>
@@ -170,7 +207,7 @@
               <h3>Chip Flow Analyst</h3>
               <span class="score-pill">72 / 100</span>
             </div>
-            <p class="score-meta">權重 0.18，信心 中等<span class="en-translation">Weight 0.18, confidence medium</span></p>
+            <p class="score-meta">權重 0.14，信心 中等<span class="en-translation">Weight 0.14, confidence medium</span></p>
             <div class="score-meter"><span style="width: 72%"></span></div>
             <p class="score-note">只要機構籌碼仍偏支持，判斷就仍偏正向；但若分配跡象升高，品質會很快下降。<span class="en-translation">Constructive only while institutional demand stays supportive and does not tip into distribution.</span></p>
           </article>
@@ -179,7 +216,7 @@
               <h3>Fundamental Analyst</h3>
               <span class="score-pill">76 / 100</span>
             </div>
-            <p class="score-meta">權重 0.17，信心 高至中<span class="en-translation">Weight 0.17, confidence high-medium</span></p>
+            <p class="score-meta">權重 0.14，信心 高至中<span class="en-translation">Weight 0.14, confidence high-medium</span></p>
             <div class="score-meter"><span style="width: 76%"></span></div>
             <p class="score-note">基本面品質仍足以支撐較高評價，但 timing discipline 不能被好故事掩蓋。<span class="en-translation">Business quality still justifies premium treatment, but timing discipline matters more than story quality alone.</span></p>
           </article>
@@ -188,7 +225,7 @@
               <h3>Catalyst Analyst</h3>
               <span class="score-pill">69 / 100</span>
             </div>
-            <p class="score-meta">權重 0.11，信心 中等<span class="en-translation">Weight 0.11, confidence medium</span></p>
+            <p class="score-meta">權重 0.10，信心 中等<span class="en-translation">Weight 0.10, confidence medium</span></p>
             <div class="score-meter"><span style="width: 69%"></span></div>
             <p class="score-note">事件窗口整體仍偏支持，但還沒有平靜到可以忽略 timing risk。<span class="en-translation">Event windows remain supportive enough to keep the thesis alive, but not calm enough to ignore timing risk.</span></p>
           </article>
@@ -197,11 +234,63 @@
               <h3>Risk Manager</h3>
               <span class="score-pill">58 / 100</span>
             </div>
-            <p class="score-meta">權重 0.12，信心 高<span class="en-translation">Weight 0.12, confidence high</span></p>
+            <p class="score-meta">權重 0.11，信心 高<span class="en-translation">Weight 0.11, confidence high</span></p>
             <div class="score-meter score-meter-risk"><span style="width: 58%"></span></div>
             <p class="score-note">這個 setup 只有在失效紀律被確實執行時才值得參與；若結構與籌碼同時轉弱，應快速降評。<span class="en-translation">The setup is actionable only if invalidation is respected quickly. Confidence should be withdrawn if structure and flow fail together.</span></p>
           </article>
+          <article class="scorecard-card">
+            <div class="scorecard-head">
+              <h3>Strategy Architect</h3>
+              <span class="score-pill">74 / 100</span>
+            </div>
+            <p class="score-meta">權重 0.09，信心 中等<span class="en-translation">Weight 0.09, confidence medium</span></p>
+            <div class="score-meter"><span style="width: 74%"></span></div>
+            <p class="score-note">首選相對強勢領導，次選趨勢拉回。這代表案例的核心不是猜轉折，而是判斷領導地位是否仍成立。<span class="en-translation">Primary preference is Relative-Strength Leadership with Pullback Continuation as the secondary module. This means the case is about leadership maintenance, not guessing a turn.</span></p>
+          </article>
+          <article class="scorecard-card">
+            <div class="scorecard-head">
+              <h3>Quant Validation Analyst</h3>
+              <span class="score-pill">67 / 100</span>
+            </div>
+            <p class="score-meta">權重 0.08，信心 中等<span class="en-translation">Weight 0.08, confidence medium</span></p>
+            <div class="score-meter"><span style="width: 67%"></span></div>
+            <p class="score-note">風險調整後報酬與交易品質仍偏合格，但尾部風險與成本敏感度不支持失去紀律的追價。<span class="en-translation">Risk-adjusted returns and trade quality still pass, but tail-risk and cost sensitivity do not support careless chasing.</span></p>
+          </article>
         </div>
+      </section>
+
+      <section>
+        <h2>驗證面板
+          <span class="en-translation">Validation Panel</span>
+        </h2>
+        <p class="section-intro">`v1.3` 會把 validation 從附註提升為正式區塊。這讓委員會必須回答：這個 thesis 不只是好聽，是否也足夠穩健。</p>
+        <p class="section-intro en-translation">`v1.3` promotes validation from a footnote into a formal section. The committee must answer whether the thesis is not only persuasive, but also robust enough.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>面板<span class="en-translation">Panel</span></th>
+              <th>目前判讀<span class="en-translation">Current read</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Performance</td>
+              <td>`Sharpe`、`Sortino`、`Calmar` 仍屬可接受區，但未高到可以忽略風控。<span class="en-translation">`Sharpe`, `Sortino`, and `Calmar` remain acceptable, but not so strong that risk discipline can be ignored.</span></td>
+            </tr>
+            <tr>
+              <td>Trade quality</td>
+              <td>`Profit Factor` 與 `Expectancy` 支持繼續觀察，但需要足夠 trade count 才有說服力。<span class="en-translation">`Profit Factor` and `Expectancy` support continued interest, but they need enough trade count to stay persuasive.</span></td>
+            </tr>
+            <tr>
+              <td>Tail risk</td>
+              <td>`Max Drawdown` 與 `CVaR` 不支持魯莽加碼，尤其在事件窗口接近時。<span class="en-translation">`Max Drawdown` and `CVaR` do not support reckless sizing, especially into dense event windows.</span></td>
+            </tr>
+            <tr>
+              <td>Robustness</td>
+              <td>`Deflated Sharpe Ratio` 與 cost sensitivity 提醒委員會：需要確認，而不是盲目追隨。<span class="en-translation">`Deflated Sharpe Ratio` and cost sensitivity remind the committee to seek confirmation instead of following blindly.</span></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <section>

@@ -23,19 +23,31 @@ def load_scan_payload() -> dict:
     output_dir = resolve_output_dir(PROJECT_ROOT, settings)
     json_path = output_dir / "daily_top20.json"
     if json_path.exists():
-        return json.loads(json_path.read_text(encoding="utf-8"))
-    return generate_scan_result(settings, weights, universe, action_rules)
+        payload = json.loads(json_path.read_text(encoding="utf-8"))
+        return {"payload": payload, "settings": settings}
+    payload = generate_scan_result(settings, weights, universe, action_rules)
+    return {"payload": payload, "settings": settings}
 
 
 def main() -> None:
-    payload = load_scan_payload()
+    loaded = load_scan_payload()
+    payload = loaded["payload"]
+    settings = loaded["settings"]
     records = payload["top20"]
     factors = pd.DataFrame(payload["sector_summary"])
     ranking_df = pd.DataFrame(records)
+    app_settings = settings.get("app", {})
+    project_settings = settings.get("project", {})
+    title = app_settings.get("title", project_settings.get("display_name", "Taiwan Stock Radar"))
+    subtitle = app_settings.get(
+        "subtitle",
+        "Strategy-enhanced single-stock Taiwan equity committee with legacy scan demo support",
+    )
+    version = project_settings.get("plan_version", "v1.3")
 
-    st.set_page_config(page_title="taiwan-stock-radar", page_icon="📈", layout="wide")
-    st.title("taiwan-stock-radar")
-    st.caption("Demo-mode Streamlit dashboard for Taiwan stock ranking, signals, and regime summary.")
+    st.set_page_config(page_title=title, page_icon="📈", layout="wide")
+    st.title(title)
+    st.caption(f"{subtitle} | Version {version}")
     st.info(payload["disclaimer"])
 
     col1, col2, col3, col4 = st.columns(4)

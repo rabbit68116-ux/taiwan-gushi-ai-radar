@@ -1,8 +1,8 @@
-# Agent Analyst Blueprint v1.2
+# Agent Analyst Blueprint v1.3
 
-Version: `v1.2`
+Version: `v1.3`
 
-Use this reference when designing the skill to behave like a **single-stock Taiwan-equity research committee** instead of a market screener.
+Use this reference when designing the skill to behave like a **single-stock Taiwan-equity strategy committee** instead of a market screener.
 
 ## 1. Objective
 
@@ -11,16 +11,17 @@ The agent should focus on one Taiwan stock at a time and evaluate it through a c
 The end product is not a score-only output. It is a professional decision packet that answers:
 
 - what the main thesis is
+- which strategy family best fits the current setup
 - what could make the thesis work
 - what could break it
 - where to buy
 - where to stop
 - where to take profit
-- how confident the committee actually is
+- how robust the setup actually is
 
 ## 2. Core operating principle
 
-`v1.2` assumes that one stock deserves multiple specialized viewpoints.
+`v1.3` assumes that one stock deserves multiple specialized viewpoints and one explicit strategy-selection layer.
 
 Do not let one generic analyst voice dominate the output. Use distinct agent roles with distinct priorities, then synthesize them into a final verdict.
 
@@ -29,9 +30,9 @@ Required properties of the process:
 - each specialist should begin with an independent read
 - disagreement should be preserved, not hidden
 - the final verdict should be weighted, not arbitrary
-- the output should separate observation, interpretation, scenario, and action plan
+- the output should separate observation, interpretation, strategy choice, validation, scenario, and action plan
 
-## 3. Default council roster
+## 3. Default committee roster
 
 ### A. Chief Strategist
 
@@ -55,7 +56,7 @@ Primary focus:
 - support and resistance
 - base quality
 - breakout or pullback structure
-- volume confirmation
+- volatility state
 
 ### C. Chip Flow Analyst
 
@@ -108,6 +109,29 @@ Primary focus:
 - downside gap risk
 - whether the thesis has acceptable invalidation structure
 
+### G. Strategy Architect
+
+Purpose:
+- decide which strategy family actually fits the current setup
+
+Primary focus:
+- regime fit
+- setup classification
+- primary versus secondary strategy module
+- disqualifying conflicts between thesis and execution style
+
+### H. Quant Validation Analyst
+
+Purpose:
+- test whether the proposed strategy is durable enough to trust
+
+Primary focus:
+- risk-adjusted return metrics
+- tail-risk metrics
+- parameter stability
+- walk-forward robustness
+- slippage and cost sensitivity
+
 ## 4. Evidence stack
 
 Every single-stock meeting should review evidence across these layers:
@@ -119,6 +143,8 @@ Every single-stock meeting should review evidence across these layers:
 5. Fundamentals and business support
 6. Catalysts and event timing
 7. Risk and fragility
+8. Strategy fit
+9. Validation and robustness
 
 Do not skip a layer just because another layer looks strong.
 
@@ -145,16 +171,37 @@ Each specialist produces:
 
 This phase should avoid premature consensus.
 
-### Phase 3: Cross-examination
+### Phase 3: Strategy nomination
+
+The Strategy Architect produces:
+
+- primary strategy family
+- secondary strategy family
+- strategy to avoid
+- why the chosen module fits the current regime
+- which conditions would force a strategy switch
+
+### Phase 4: Validation review
+
+The Quant Validation Analyst reviews:
+
+- core performance metrics
+- trade-quality metrics
+- tail-risk metrics
+- robustness and overfitting checks
+- the minimum evidence needed before the committee should act
+
+### Phase 5: Cross-examination
 
 The chair identifies:
 
 - where specialists agree
 - where the thesis is fragile
+- whether strategy fit and validation are aligned
 - which facts are missing
 - what evidence would change the current leaning
 
-### Phase 4: Weighted vote
+### Phase 6: Weighted vote
 
 The system aggregates specialist views using configured weights.
 
@@ -162,10 +209,11 @@ The vote should not erase dissent. It should report:
 
 - consensus score
 - dominant direction
+- dominant strategy family
 - dissenting agents
 - the highest-priority unresolved risk
 
-### Phase 5: Final decision packet
+### Phase 7: Final decision packet
 
 The chair writes the final result in a form that can be acted on or challenged.
 
@@ -175,23 +223,80 @@ Suggested weight profile:
 
 | Agent | Weight |
 |---|---:|
-| Chief Strategist | 0.24 |
-| Technical Strategist | 0.18 |
-| Chip Flow Analyst | 0.18 |
-| Fundamental Analyst | 0.17 |
-| Catalyst Analyst | 0.11 |
-| Risk Manager | 0.12 |
+| Chief Strategist | 0.18 |
+| Technical Strategist | 0.16 |
+| Chip Flow Analyst | 0.14 |
+| Fundamental Analyst | 0.14 |
+| Catalyst Analyst | 0.10 |
+| Risk Manager | 0.11 |
+| Strategy Architect | 0.09 |
+| Quant Validation Analyst | 0.08 |
 
 Guidelines:
 
 - keep total weights normalized to `1.00`
 - require the Risk Manager to be visible even when bullish consensus is strong
-- if Catalyst or Risk strongly objects, reduce confidence even if the directional vote stays positive
+- if Catalyst, Risk, or Validation strongly objects, reduce confidence even if the directional vote stays positive
 - if Technical and Chip Flow disagree sharply, treat the setup as fragile
+- if Strategy Architect and Validation disagree on the same setup, avoid pretending the execution plan is settled
 
-## 7. Required output schema
+## 7. Strategy engine
 
-Every `v1.2` deep-dive should include these sections:
+The `v1.3` strategy engine should prefer these families:
+
+| Strategy family | Use when | Avoid when |
+|---|---|---|
+| Time-Series Momentum | the stock and its regime both support continuation | crash-like or disorderly high-vol conditions |
+| Relative-Strength Leadership | a stock leads peers with flow support | leadership is fading or breadth is collapsing |
+| Breakout Confirmation | structure tightens and expands with volume | expansion is late, thin, or unsupported by flow |
+| Pullback Continuation | the trend is intact and pullback depth stays healthy | pullback becomes structural failure |
+| Volatility Contraction Expansion | volatility compresses before directional release | catalysts can create random gap risk |
+| Tactical Mean Reversion | oversold conditions occur inside higher-quality structure | the tape is breaking and downside trend remains dominant |
+
+## 8. Evaluation stack
+
+Every `v1.3` deep-dive should include metrics across four layers:
+
+### Core performance
+
+- CAGR
+- annualized volatility
+- Sharpe ratio
+- Sortino ratio
+- Calmar ratio
+
+### Trade quality
+
+- win rate
+- profit factor
+- expectancy
+- exposure
+- turnover
+- trade count
+
+### Tail risk
+
+- maximum drawdown
+- VaR
+- CVaR
+- CDaR
+- Ulcer Index
+- Omega ratio
+- Tail ratio
+
+### Robustness
+
+- walk-forward stability
+- purged cross-validation
+- combinatorial purged cross-validation
+- deflated Sharpe ratio
+- parameter sensitivity
+- cost and slippage sensitivity
+- regime-split performance
+
+## 9. Required output schema
+
+Every `v1.3` deep-dive should include these sections:
 
 | Section | Why it matters |
 |---|---|
@@ -199,6 +304,9 @@ Every `v1.2` deep-dive should include these sections:
 | Stock Context | Identifies market, sector, and peers |
 | Market Regime | Shows whether the broader tape helps or hurts |
 | Specialist Briefs | Preserves the separate expert views |
+| Strategy Selection | Shows how the setup should actually be traded |
+| Committee Scorecard | Makes internal weighting visible |
+| Validation Scorecard | Shows whether the thesis survives quantitative scrutiny |
 | Agreement / Disagreement Map | Makes the internal debate explicit |
 | Final Thesis | States the main committee conclusion |
 | Scenario Tree | Base, bull, and bear cases |
@@ -206,9 +314,10 @@ Every `v1.2` deep-dive should include these sections:
 | Aggressive / Conservative Trigger | Differentiates early entry from confirmation |
 | Stop / Invalidation | Shows what breaks the thesis |
 | TP1 / TP2 | Provides a concrete exit framework |
+| Robustness Notes | Keeps overfitting risk visible |
 | Confidence / Missing Data | Prevents false precision |
 
-## 8. Deepening rules for stronger analysis
+## 10. Deepening rules for stronger analysis
 
 If the user asks for a stronger or deeper judgment, expand the meeting with:
 
@@ -216,12 +325,14 @@ If the user asks for a stronger or deeper judgment, expand the meeting with:
 - revenue and earnings trend table
 - catalyst calendar with dates
 - multi-timeframe technical map
+- strategy-switch conditions
 - evidence ranking: strongest 3 bullish and strongest 3 bearish points
 - dissent memo from the Risk Manager
+- validation memo from the Quant Validation Analyst
 
 The deeper mode should feel like a professional internal meeting note, not just a longer paragraph.
 
-## 9. What makes the agent feel senior
+## 11. What makes the agent feel senior
 
 The agent should:
 
@@ -231,22 +342,24 @@ The agent should:
 - distinguish business quality from trading quality
 - separate the best case from the most likely case
 - always name the thesis-break condition
+- state clearly when a strategy is interesting but not yet validated enough to act
 
 The agent should not:
 
 - sound certain when evidence is mixed
 - hide disagreement for the sake of simplicity
 - present identical buy/sell logic for every stock
-- skip catalyst timing or liquidity risk
+- skip catalyst timing, liquidity risk, or validation risk
 
-## 10. Implementation guidance
+## 12. Implementation guidance
 
 When turning this blueprint into workflows or code, prefer:
 
 - a persona config file with weights and focus areas
+- a strategy-module config file
 - reusable meeting phases
-- mandatory final-output fields
+- mandatory validation fields
 - Taiwan-specific data sources and timing logic
 - structured logs of agreement and dissent
 
-The `v1.2` system is successful when a reader can see not only the final call, but also how the different specialists reached it and what could still invalidate it.
+The `v1.3` system is successful when a reader can see not only the final call, but also how the specialists chose the strategy, how robust the setup is, and what would still invalidate it.

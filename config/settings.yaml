@@ -2,8 +2,8 @@
   "project": {
     "name": "taiwan-stock-radar",
     "display_name": "Taiwan Stock Radar",
-    "plan_version": "v1.2",
-    "mode": "single_stock_council"
+    "plan_version": "v1.3",
+    "mode": "single_stock_strategy_council"
   },
   "analysis": {
     "primary_scope": "single_stock",
@@ -12,14 +12,33 @@
       "tactical",
       "swing",
       "position"
+    ],
+    "strategy_engine": "multi_strategy_weighted_committee",
+    "supported_strategy_families": [
+      "trend_following",
+      "relative_strength_leadership",
+      "breakout_confirmation",
+      "pullback_continuation",
+      "volatility_contraction_expansion",
+      "tactical_mean_reversion"
     ]
   },
   "council": {
     "enabled": true,
-    "default_agent_count": 6,
+    "default_agent_count": 8,
     "consensus_threshold": 0.68,
     "dissent_threshold": 0.24,
-    "persona_config_path": "config/agent_personas.yaml"
+    "persona_config_path": "config/agent_personas.yaml",
+    "strategy_module_config_path": "config/strategy_modules.yaml",
+    "evaluation_metric_config_path": "config/evaluation_metrics.yaml"
+  },
+  "validation": {
+    "enabled": true,
+    "require_strategy_selection": true,
+    "require_validation_panel": true,
+    "minimum_trade_count": 30,
+    "minimum_profit_factor": 1.15,
+    "minimum_deflated_sharpe_ratio": 0.55
   },
   "scan": {
     "production_target_universe_size": 1800,
@@ -42,6 +61,6 @@
   },
   "app": {
     "title": "Taiwan Stock Radar",
-    "subtitle": "Single-stock Taiwan equity council with legacy scan demo support"
+    "subtitle": "Strategy-enhanced single-stock Taiwan equity committee with legacy scan demo support"
   }
 }
